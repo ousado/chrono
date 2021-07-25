@@ -2059,7 +2059,7 @@ pub mod serde {
             where
                 E: de::Error,
             {
-                NaiveDateTime::from_timestamp_opt(value / 1000, ((value % 1000) * 1_000_000) as u32)
+                NaiveDateTime::from_timestamp_opt(value / 1000, ((value.abs() % 1000) * 1_000_000) as u32)
                     .ok_or_else(|| E::custom(ne_timestamp(value)))
             }
 
